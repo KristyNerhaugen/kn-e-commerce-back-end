@@ -1,11 +1,25 @@
 const router = require('express').Router();
+const { UPSERT } = require('sequelize/types/lib/query-types');
 const { Category, Product } = require('../../models');
 
 // The `/api/categories` endpoint
 
 router.get('/', (req, res) => {
   // find all categories
-  // be sure to include its associated Products
+  User.findAll(
+     // includes its associated Products
+    include [
+      {
+        model: Product,
+        attributes: ['id']
+      }
+    ]
+  )
+  .then(dbUserData => res.json(dbUserData))
+  .catch(err => {
+    console.log(err);
+    res.status(500).json(err);
+  });
 });
 
 router.get('/:id', (req, res) => {
