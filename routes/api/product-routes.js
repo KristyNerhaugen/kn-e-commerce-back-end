@@ -19,7 +19,7 @@ router.get("/", (req, res) => {
       },
     ],
   })
-    .then((dbProductData = res.json(dbProductData)))
+    .then((dbProductData) => res.json(dbProductData))
     .catch((err) => {
       console.log(err);
       res.status(500).json(err);
