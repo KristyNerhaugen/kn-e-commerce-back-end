@@ -10,7 +10,7 @@ router.get("/", (req, res) => {
     include: [
       {
         model: Product,
-        attributes: ["product_name", "price", "stock"],
+        attributes: ["product_name", "price", "stock"]
       },
     ],
   })
@@ -24,11 +24,14 @@ router.get("/", (req, res) => {
 router.get("/:id", (req, res) => {
   // find one category by its `id` value
   Category.findOne({
+    where: {
+      id: req.params.id
+    },
     // includes associated Products
     include: [
       {
         model: Product,
-        attributes: ["product_name", "price", "stock"],
+        attributes: ["product_name", "price", "stock"]
       },
     ],
   })
